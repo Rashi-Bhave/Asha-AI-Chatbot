@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   Image,
@@ -15,9 +15,6 @@ import * as Haptics from 'expo-haptics';
 // Context
 import { AuthContext } from '../context/AuthContext';
 
-// Services
-import { trackScreenView } from '../services/analyticsService';
-
 // Constants
 import { COLORS } from '../constants/colors';
 import { SPACING, TYPOGRAPHY, SHADOWS } from '../constants/theme';
@@ -26,10 +23,6 @@ const { width, height } = Dimensions.get('window');
 
 const WelcomeScreen = ({ navigation }) => {
   const { skipAuth } = useContext(AuthContext);
-  
-  useEffect(() => {
-    trackScreenView('WelcomeScreen');
-  }, []);
   
   const handleLogin = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);

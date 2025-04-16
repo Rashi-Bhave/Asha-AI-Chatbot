@@ -21,9 +21,6 @@ import FeedbackModal from './FeedbackModal';
 // Context
 import { ChatContext } from '../context/ChatContext';
 
-// Services
-import { trackEvent } from '../services/analyticsService';
-
 // Constants
 import { COLORS } from '../constants/colors';
 import { SPACING, TYPOGRAPHY, SHADOWS } from '../constants/theme';
@@ -54,7 +51,6 @@ const ChatInterface = ({ navigation }) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     sendMessage(inputText);
     setInputText('');
-    trackEvent('message_sent', { length: inputText.length });
     
     // Focus back on input after sending
     Keyboard.dismiss();
@@ -105,7 +101,6 @@ const ChatInterface = ({ navigation }) => {
             style={styles.suggestionButton}
             onPress={() => {
               sendMessage("Show me recent job listings");
-              trackEvent('suggestion_tapped', { type: 'jobs' });
             }}
           >
             <Text style={styles.suggestionText}>Show job listings</Text>
@@ -114,7 +109,6 @@ const ChatInterface = ({ navigation }) => {
             style={styles.suggestionButton}
             onPress={() => {
               sendMessage("What events are happening soon?");
-              trackEvent('suggestion_tapped', { type: 'events' });
             }}
           >
             <Text style={styles.suggestionText}>Upcoming events</Text>
@@ -123,7 +117,6 @@ const ChatInterface = ({ navigation }) => {
             style={styles.suggestionButton}
             onPress={() => {
               sendMessage("Tell me about mentorship programs");
-              trackEvent('suggestion_tapped', { type: 'mentorship' });
             }}
           >
             <Text style={styles.suggestionText}>Mentorship programs</Text>

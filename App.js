@@ -19,7 +19,6 @@ import AuthNavigator from './src/navigation/AuthNavigator';
 import { theme } from './src/constants/theme';
 
 // Services
-import { initializeAnalytics } from './src/services/analyticsService';
 import { isAuthenticated } from './src/services/storageService';
 
 // Prevent native splash screen from auto-hiding
@@ -32,9 +31,6 @@ export default function App() {
   useEffect(() => {
     async function prepare() {
       try {
-        // Initialize analytics
-        await initializeAnalytics();
-        
         // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,

@@ -4,7 +4,6 @@ import * as SecureStore from 'expo-secure-store';
 // Services
 import { getUserProfile, loginUser, registerUser, logoutUser } from '../api/index';
 import { saveAuthToken, getAuthToken, removeAuthToken } from '../services/storageService';
-import { trackEvent } from '../services/analyticsService';
 
 export const AuthContext = createContext();
 
@@ -49,13 +48,10 @@ export const AuthProvider = ({ children }) => {
       // Set user data
       setUser(response.user);
       
-      trackEvent('user_login', { userId: response.user.id });
-      
       return { success: true };
     } catch (e) {
       console.error('Login error:', e);
       setError(e.message || 'An error occurred during login.');
-      trackEvent('login_error', { error: e.message });
       return { success: false, error: e.message || 'Login failed' };
     } finally {
       setLoading(false);
@@ -75,13 +71,10 @@ export const AuthProvider = ({ children }) => {
       // Set user data
       setUser(response.user);
       
-      trackEvent('user_register', { userId: response.user.id });
-      
       return { success: true };
     } catch (e) {
       console.error('Registration error:', e);
       setError(e.message || 'An error occurred during registration.');
-      trackEvent('register_error', { error: e.message });
       return { success: false, error: e.message || 'Registration failed' };
     } finally {
       setLoading(false);
@@ -99,8 +92,6 @@ export const AuthProvider = ({ children }) => {
       await removeAuthToken();
       setUser(null);
       
-      trackEvent('user_logout');
-      
       return { success: true };
     } catch (e) {
       console.error('Logout error:', e);
@@ -117,8 +108,6 @@ export const AuthProvider = ({ children }) => {
       // Would call API to update profile
       const updatedUser = { ...user, ...updatedData };
       setUser(updatedUser);
-      
-      trackEvent('profile_updated');
       
       return { success: true };
     } catch (e) {
@@ -147,8 +136,6 @@ export const AuthProvider = ({ children }) => {
     
     setUser(demoUser);
     setLoading(false);
-    
-    trackEvent('demo_login');
     
     return { success: true };
   };

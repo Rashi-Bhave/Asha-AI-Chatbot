@@ -3,9 +3,6 @@ import { View, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import { Card, Text, Chip, Button, IconButton } from 'react-native-paper';
 import * as Haptics from 'expo-haptics';
 
-// Services
-import { trackEvent } from '../services/analyticsService';
-
 // Utils
 import { formatDate } from '../utils/dateUtils';
 
@@ -19,21 +16,11 @@ const JobCard = ({ job }) => {
     
     if (job.applyUrl) {
       Linking.openURL(job.applyUrl);
-      trackEvent('job_apply_clicked', { 
-        jobId: job.id,
-        jobTitle: job.title,
-        company: job.company 
-      });
     }
   };
   
   const handleSave = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    trackEvent('job_saved', { 
-      jobId: job.id,
-      jobTitle: job.title,
-      company: job.company 
-    });
     // Save job implementation would go here
   };
   

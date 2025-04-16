@@ -4,7 +4,6 @@ import { Alert } from 'react-native';
 // Services
 import { processUserMessage } from '../services/chatService';
 import { detectBias } from '../services/biasDetectionService';
-import { trackEvent } from '../services/analyticsService';
 import { saveChat, loadChat } from '../services/storageService';
 
 // Utils
@@ -88,8 +87,6 @@ export const ChatProvider = ({ children }) => {
           timestamp: new Date().toISOString(),
           thinking: true,
         });
-        
-        trackEvent('bias_detected', { originalText: text });
       }
       
       // Process the message
@@ -107,11 +104,6 @@ export const ChatProvider = ({ children }) => {
         attachment: response.attachment,
       });
       
-      trackEvent('message_received', { 
-        length: response.text.length,
-        hasAttachment: !!response.attachment 
-      });
-      
     } catch (error) {
       console.error('Error processing message:', error);
       
@@ -122,8 +114,6 @@ export const ChatProvider = ({ children }) => {
         sender: 'bot',
         timestamp: new Date().toISOString(),
       });
-      
-      trackEvent('message_error', { error: error.message });
       
     } finally {
       setTyping(false);
@@ -146,7 +136,6 @@ export const ChatProvider = ({ children }) => {
             setMessages([]);
             setConversation([]);
             saveChat([]);
-            trackEvent('chat_cleared');
           },
         },
       ]

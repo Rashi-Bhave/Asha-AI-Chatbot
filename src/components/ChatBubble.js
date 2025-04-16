@@ -18,9 +18,6 @@ import JobCard from './JobCard';
 import EventCard from './EventCard';
 import MentorshipCard from './MentorshipCard';
 
-// Services
-import { trackEvent } from '../services/analyticsService';
-
 // Constants
 import { COLORS } from '../constants/colors';
 import { SPACING, TYPOGRAPHY, SHADOWS } from '../constants/theme';
@@ -69,7 +66,6 @@ const ChatBubble = ({ message, onLongPress }) => {
     setShowActions(false);
     animateOut();
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    trackEvent('message_copied', { isUserMessage: isUser });
   };
 
   const renderAttachment = () => {

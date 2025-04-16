@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "322899675137",
+    "project_id": "asha-ai-chatbot",
+    "storage_bucket": "asha-ai-chatbot.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322899675137:android:0c07b969fc13159aded800",
+        "android_client_info": {
+          "package_name": "com.jobsforher.ashabot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsgkwI2Jp0F2_0-x3hpfVww-od4VkLGbs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

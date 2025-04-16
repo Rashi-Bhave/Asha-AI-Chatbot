@@ -121,7 +121,7 @@ const LoginScreen = ({ navigation }) => {
   };
   
   const handleSkip = async () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    // rHaptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     trackEvent('auth_skipped');
     await skipAuth();
   };
